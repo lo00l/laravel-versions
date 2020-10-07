@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Contracts\ReleaseFetcherInterface;
 use App\Exceptions\ReleaseFetchException;
-use App\Support\Release;
+use App\DTO\Release;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -32,7 +32,10 @@ class FetchReleases implements ShouldQueue
             $releases = $releaseFetcher->fetchReleases('laravel/framework');
             collect($releases)
                 ->each(static function (Release $release) {
-                    if (DbRelease::query()->where('tag_name', $release->getTagName())->exists()) {
+                    if (DbRelease::query()
+                        ->withoutGlobalScopes()
+                        ->where('tag_name', $release->getTagName())
+                        ->exists()) {
                         return false;
                     }
 

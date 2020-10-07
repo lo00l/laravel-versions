@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Scopes\MonthScope;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -11,6 +12,9 @@ use Illuminate\Support\Carbon;
  * @property string $url
  * @property string $tag_name
  * @property Carbon $released_at
+ *
+ * @method static QueryBuilder thisMonth()
+ * @method static QueryBuilder lastMonth()
  */
 class Release extends Model
 {
@@ -28,11 +32,15 @@ class Release extends Model
         'released_at',
     ];
 
-    /**
-     * @return void
-     */
-    protected static function booted(): void
+    public function scopeThisMonth(QueryBuilder $query): QueryBuilder
     {
-        static::addGlobalScope(new MonthScope());
+        return $query->where('released_at', Carbon::now()->startOfMonth());
+    }
+
+    public function scopeLastMonth(QueryBuilder $query): QueryBuilder
+    {
+        $lastMonth = Carbon::now()->subMonth();
+
+        return $query->whereBetween('released_at', [$lastMonth->startOfMonth(), $lastMonth->endOfMonth()]);
     }
 }

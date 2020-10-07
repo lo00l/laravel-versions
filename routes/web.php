@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'ReleasesController@index');
+Route::get('/last', 'ReleasesController@last');

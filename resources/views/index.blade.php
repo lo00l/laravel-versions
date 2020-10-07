@@ -7,6 +7,7 @@
     <body>
         <div class="container count">
             <h1>{{ $releases->count() }}</h1>
+            <a href="/last" class="other-month-count">Last month: {{ $lastMonthCount }}</a>
             <a href="#releases" class="info">What versions?</a>
         </div>
         <a name="releases"></a>

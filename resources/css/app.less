@@ -1,0 +1,87 @@
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 1s linear;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-margin-top: 1em;
+
+    &.count {
+        position: relative;
+        flex-direction: column;
+
+        h1 {
+            font-size: 15em;
+            color: #212121;
+            margin: 0;
+        }
+
+        a.other-month-count {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #616161;
+            transition: all 0.5s ease-out;
+            font-size: 1em;
+            opacity: 0.6;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .info {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            color: #616161;
+            font-size: 2em;
+            text-transform: uppercase;
+            transform: translateX(-50%);
+            opacity: 0.6;
+            transition: all 0.5s ease-out;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.releases ul {
+        list-style: none;
+        padding: 0;
+        font-size: 3em;
+        line-height: 1.5em;
+
+        a {
+            color: #039be5;
+
+            &:hover {
+                color: #0277bd;
+            }
+
+            &:visited {
+                color: #006db3;
+            }
+
+            &:visited:hover {
+                color: #004c8c;
+            }
+        }
+    }
+}
