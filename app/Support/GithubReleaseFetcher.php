@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use App\Contracts\ReleaseFetcherInterface;
+use App\DTO\Release;
 use App\Exceptions\ReleaseFetchException;
 use Github\Client as GithubClient;
 use Illuminate\Support\Arr;
