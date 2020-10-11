@@ -34,13 +34,16 @@ class Release extends Model
 
     public function scopeThisMonth(QueryBuilder $query): QueryBuilder
     {
-        return $query->where('released_at', Carbon::now()->startOfMonth());
+        return $query->where('released_at', '>=', Carbon::now()->startOfMonth()->toDateString());
     }
 
     public function scopeLastMonth(QueryBuilder $query): QueryBuilder
     {
         $lastMonth = Carbon::now()->subMonth();
 
-        return $query->whereBetween('released_at', [$lastMonth->startOfMonth(), $lastMonth->endOfMonth()]);
+        return $query->whereBetween(
+            'released_at',
+            [$lastMonth->startOfMonth()->toDateString(), $lastMonth->endOfMonth()->toDateString()]
+        );
     }
 }
