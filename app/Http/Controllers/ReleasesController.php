@@ -16,7 +16,7 @@ class ReleasesController extends Controller
             'index',
             [
                 'releases' => $repository->getThisMonthReleases(),
-                'lastMonthCount' => $repository->getLastMonthReleasesCount(),
+                'otherCount' => $repository->getLastMonthReleasesCount(),
             ]
         );
     }
@@ -27,7 +27,7 @@ class ReleasesController extends Controller
             'last_month',
             [
                 'releases' => $repository->getLastMonthReleases(),
-                'thisMonthCount' => $repository->getThisMonthReleasesCount(),
+                'otherCount' => $repository->getThisMonthReleasesCount(),
             ]
         );
     }

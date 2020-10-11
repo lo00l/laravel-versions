@@ -1,3 +1,14 @@
+@base-color: #212121;
+
+.fadein {
+    opacity: 0.6;
+    transition: opacity 0.5s ease-out;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -28,37 +39,28 @@ a {
 
         h1 {
             font-size: 15em;
-            color: #212121;
+            color: @base-color;
             margin: 0;
         }
 
         a.other-month-count {
             text-decoration: none;
             text-transform: uppercase;
-            color: #616161;
-            transition: all 0.5s ease-out;
+            color: @base-color;
             font-size: 1em;
-            opacity: 0.6;
-
-            &:hover {
-                opacity: 1;
-            }
+            .fadein();
         }
 
         .info {
             position: absolute;
             left: 50%;
             bottom: 20px;
-            color: #616161;
+            color: @base-color;
             font-size: 2em;
             text-transform: uppercase;
             transform: translateX(-50%);
-            opacity: 0.6;
-            transition: all 0.5s ease-out;
-
-            &:hover {
-                opacity: 1;
-            }
+            text-align: center;
+            .fadein();
         }
     }
 
@@ -67,6 +69,10 @@ a {
         padding: 0;
         font-size: 3em;
         line-height: 1.5em;
+
+        @media (max-width: 767px) {
+            font-size: 2em;
+        }
 
         a {
             color: #039be5;
@@ -83,5 +89,32 @@ a {
                 color: #004c8c;
             }
         }
+    }
+}
+
+.github {
+    color: @base-color;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    .fadein();
+
+    img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        flex-grow:0;
+        flex-shrink:0;
+    }
+
+    @media (max-width: 767px) {
+        position: static;
+        width: 100%;
+        justify-content: center;
     }
 }
